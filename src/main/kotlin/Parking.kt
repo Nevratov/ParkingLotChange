@@ -1,4 +1,4 @@
-class Parking(val spots: Array<ArrayList<String>> = Array(20) { arrayListOf() }) {
+class Parking(var spots: Array<ArrayList<String>> = Array(0) { arrayListOf() }) {
 
     fun parkCar(carNumber: String, carColor: String) {
         for (spot in spots.indices) {
@@ -17,5 +17,17 @@ class Parking(val spots: Array<ArrayList<String>> = Array(20) { arrayListOf() })
             spots[spot - 1].clear()
             println("Spot $spot is free.")
         }
+    }
+
+    fun status() {
+        if (spots[0].isEmpty()) println("Parking lot is empty.")
+        else for (spot in spots.indices) {
+            if (spots[spot].isNotEmpty()) println("${spot + 1} ${spots[spot][0]} ${spots[spot][1]}") else continue
+        }
+    }
+
+    fun create(newSpots: Int) {
+        spots = Array(newSpots) { arrayListOf() }
+        println("Created a parking lot with $newSpots spots.")
     }
 }
