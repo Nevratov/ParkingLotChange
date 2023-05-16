@@ -4,7 +4,7 @@ fun main() {
     do {
         val request = readln().split(" ")
 
-        if (parking.spots.isEmpty() && request[0].lowercase() != "create") {
+        if (parking.spots.isEmpty() && request[0].lowercase() != "create" && request[0].lowercase() != "exit") {
             println("Sorry, a parking lot has not been created.")
             continue
         } else if ("park" in request) parking.parkCar(request[1], request[2])
