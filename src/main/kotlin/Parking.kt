@@ -30,4 +30,26 @@ class Parking(var spots: Array<ArrayList<String>> = Array(0) { arrayListOf() }) 
         spots = Array(newSpots) { arrayListOf() }
         println("Created a parking lot with $newSpots spots.")
     }
+
+    fun regByColor(color: String) {
+        val carNumbers = arrayListOf<String>()
+        for (spot in spots.indices) if (spots[spot].isNotEmpty() && color in spots[spot]) carNumbers.add(spots[spot][0])
+
+        if (carNumbers.isEmpty()) println("No cars with color ${color.uppercase()} were found.")
+        else println(carNumbers.joinToString())
+    }
+
+    fun spotByReg(carNumber: String) {
+        for (spot in spots.indices)
+            if (spots[spot].isNotEmpty() && carNumber in spots[spot]) { println(spot + 1); return }
+        println("No cars with registration number $carNumber were found.")
+    }
+
+    fun spotByColor(color: String) {
+        val arraySpots = arrayListOf<Int>()
+        for (spot in spots.indices) if (spots[spot].isNotEmpty() && color in spots[spot]) arraySpots.add(spot + 1)
+
+        if (arraySpots.isEmpty()) println("No cars with color ${color.uppercase()} were found.")
+        else println(arraySpots.joinToString())
+    }
 }

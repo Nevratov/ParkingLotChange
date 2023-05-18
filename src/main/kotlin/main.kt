@@ -7,9 +7,15 @@ fun main() {
         if (parking.spots.isEmpty() && request[0].lowercase() != "create" && request[0].lowercase() != "exit") {
             println("Sorry, a parking lot has not been created.")
             continue
-        } else if ("park" in request) parking.parkCar(request[1], request[2])
-        else if ("leave" in request) parking.leaveCar(request[1].toInt())
-        else if ("status" in request) parking.status()
-        else if ("create" in request) parking.create(request[1].toInt())
+        } else
+        when (request[0]) {
+            "park" -> parking.parkCar(request[1], request[2].lowercase())
+            "leave" -> parking.leaveCar(request[1].toInt())
+            "status" -> parking.status()
+            "reg_by_color" -> parking.regByColor(request[1].lowercase())
+            "spot_by_reg" -> parking.spotByReg(request[1])
+            "spot_by_color" -> parking.spotByColor(request[1])
+            "create" ->parking.create(request[1].toInt())
+        }
     } while (request[0].lowercase() != "exit")
 }
